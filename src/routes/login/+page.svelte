@@ -3,7 +3,11 @@
 	import Lock from '$lib/components/icons/Lock.svelte';
 	import type { ActionData } from './$types';
 
-	export let form: ActionData;
+	interface Props {
+		form: ActionData;
+	}
+
+	let { form }: Props = $props();
 </script>
 
 <svelte:head>
@@ -12,7 +16,7 @@
 
 <div class="h-screen md:flex">
 	<div
-		class="hidden w-1/2 items-center justify-center overflow-hidden bg-gradient-to-tr from-teal-600 to-green-400 md:flex lg:flex"
+		class="hidden w-1/2 items-center justify-center overflow-hidden bg-linear-to-tr from-teal-600 to-green-400 md:flex lg:flex"
 	>
 		<div class="size-64">
 			<h1 class="font-sans text-4xl font-bold text-gray-50">開始動手</h1>
@@ -35,7 +39,7 @@
 				<CommercialAt className="size-5 text-gray-400" />
 				<label for="email" class="hidden"></label>
 				<input
-					class="border-none bg-transparent pl-2 outline-none"
+					class="border-none bg-transparent pl-2 outline-hidden"
 					type="text"
 					name="email"
 					id="email"
@@ -47,7 +51,7 @@
 				<Lock className="h-5 w-5 text-gray-400" />
 				<label for="password" class="hidden"></label>
 				<input
-					class="border-none bg-transparent pl-2 outline-none"
+					class="border-none bg-transparent pl-2 outline-hidden"
 					type="password"
 					name="password"
 					id="password"
@@ -65,7 +69,7 @@
 						type="checkbox"
 						name="remember"
 						id="remember"
-						class="size-5 cursor-pointer rounded border-2 border-gray-300 bg-transparent text-emerald-500 focus:ring-emerald-400"
+						class="size-5 cursor-pointer rounded-sm border-2 border-gray-300 bg-transparent text-emerald-500 focus:ring-emerald-400"
 					/>
 					<span class="ml-2 text-sm">記住我</span>
 				</label>

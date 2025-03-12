@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let className = 'size-5';
+	interface Props {
+		className?: string;
+	}
+
+	let { className = 'size-5' }: Props = $props();
 </script>
 
 <svg xmlns="http://www.w3.org/2000/svg" class={className} viewBox="0 0 20 20" fill="currentColor">

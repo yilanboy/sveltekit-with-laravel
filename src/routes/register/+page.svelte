@@ -5,7 +5,11 @@
 
 	import type { ActionData } from './$types';
 
-	export let form: ActionData;
+	interface Props {
+		form: ActionData;
+	}
+
+	let { form }: Props = $props();
 </script>
 
 <svelte:head>
@@ -14,7 +18,7 @@
 
 <div class="h-screen md:flex">
 	<div
-		class="hidden w-1/2 items-center justify-center overflow-hidden bg-gradient-to-tr from-purple-700 to-blue-500 md:flex lg:flex"
+		class="hidden w-1/2 items-center justify-center overflow-hidden bg-linear-to-tr from-purple-700 to-blue-500 md:flex lg:flex"
 	>
 		<div class="size-64">
 			<h1 class="font-sans text-4xl font-bold text-gray-50">加入我們</h1>
@@ -36,7 +40,7 @@
 			<div class="mb-4 flex items-center rounded-2xl border-2 px-3 py-2">
 				<User className="size-5 text-gray-400" />
 				<input
-					class="border-none bg-transparent pl-2 outline-none"
+					class="border-none bg-transparent pl-2 outline-hidden"
 					type="text"
 					name="name"
 					id="name"
@@ -47,7 +51,7 @@
 			<div class="mb-4 flex items-center rounded-2xl border-2 px-3 py-2">
 				<CommercialAt className="size-5 text-gray-400" />
 				<input
-					class="border-none bg-transparent pl-2 outline-none"
+					class="border-none bg-transparent pl-2 outline-hidden"
 					type="text"
 					name="email"
 					id="email"
@@ -58,7 +62,7 @@
 			<div class="mb-4 flex items-center rounded-2xl border-2 px-3 py-2">
 				<Lock className="h-5 w-5 text-gray-400" />
 				<input
-					class="border-none bg-transparent pl-2 outline-none"
+					class="border-none bg-transparent pl-2 outline-hidden"
 					type="password"
 					name="password"
 					id="password"
@@ -68,7 +72,7 @@
 			<div class="flex items-center rounded-2xl border-2 px-3 py-2">
 				<Lock className="h-5 w-5 text-gray-400" />
 				<input
-					class="border-none bg-transparent pl-2 outline-none"
+					class="border-none bg-transparent pl-2 outline-hidden"
 					type="password"
 					name="password_confirmation"
 					id="password_confirmation"

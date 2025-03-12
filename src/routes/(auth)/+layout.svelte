@@ -7,6 +7,11 @@
 	import Tag from '$lib/components/icons/Tag.svelte';
 	import Link from '$lib/components/icons/Link.svelte';
 	import Paper from '$lib/components/icons/Paper.svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	interface Category {
 		name: string;
@@ -16,8 +21,8 @@
 	}
 
 	const menuTitle = 'DocFunc CMS';
-	let offCanvasMenuIsOpen = false;
-	let dropdownMenuIsOpen = false;
+	let offCanvasMenuIsOpen = $state(false);
+	let dropdownMenuIsOpen = $state(false);
 	let categories: Array<Category> = [
 		{
 			name: 'Dashboard',
@@ -71,7 +76,7 @@
 					class:opacity-0={!offCanvasMenuIsOpen}
 				>
 					<button
-						on:click={() => (offCanvasMenuIsOpen = !offCanvasMenuIsOpen)}
+						onclick={() => (offCanvasMenuIsOpen = !offCanvasMenuIsOpen)}
 						type="button"
 						class="-m-2.5 p-2.5"
 					>
@@ -88,6 +93,7 @@
 							<li>
 								<ul role="list" class="-mx-2 space-y-1">
 									{#each categories as { name, iconComponent, url, isCurrentPage }}
+										{@const SvelteComponent = iconComponent}
 										<li>
 											<a
 												href={url}
@@ -98,7 +104,7 @@
 												class:hover:text-indigo-600={!isCurrentPage}
 												class:hover:bg-gray-50={!isCurrentPage}
 											>
-												<svelte:component this={iconComponent} className="size-6 shrink-0" />
+												<SvelteComponent className="size-6 shrink-0" />
 												{name}
 											</a>
 										</li>
@@ -124,6 +130,7 @@
 					<li>
 						<ul role="list" class="-mx-2 space-y-1">
 							{#each categories as { name, iconComponent, url, isCurrentPage }}
+								{@const SvelteComponent_1 = iconComponent}
 								<li>
 									<a
 										href={url}
@@ -134,7 +141,7 @@
 										class:hover:text-indigo-600={!isCurrentPage}
 										class:hover:bg-gray-50={!isCurrentPage}
 									>
-										<svelte:component this={iconComponent} className="size-6 shrink-0" />
+										<SvelteComponent_1 className="size-6 shrink-0" />
 										{name}
 									</a>
 								</li>
@@ -148,7 +155,7 @@
 
 	<div class="lg:pl-72">
 		<div
-			class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8"
+			class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-xs sm:gap-x-6 sm:px-6 lg:px-8"
 		>
 			<button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden">
 				<span class="sr-only">Open sidebar</span>
@@ -219,7 +226,7 @@
 					<!-- Profile dropdown -->
 					<div class="relative">
 						<button
-							on:click={() => (dropdownMenuIsOpen = !dropdownMenuIsOpen)}
+							onclick={() => (dropdownMenuIsOpen = !dropdownMenuIsOpen)}
 							type="button"
 							class="-m-1.5 flex items-center p-1.5"
 							id="user-menu-button"
@@ -254,7 +261,7 @@
 						<!-- Dropdown menu, show/hide based on menu state. -->
 						<div
 							transition:scale={{ duration: 150 }}
-							class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right transform rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 transition focus:outline-none"
+							class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right transform rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 transition focus:outline-hidden"
 							class:ease-out={dropdownMenuIsOpen}
 							class:duration-100={dropdownMenuIsOpen}
 							class:opacity-100={dropdownMenuIsOpen}
@@ -296,7 +303,7 @@
 		<main class="py-10">
 			<div class="px-4 sm:px-6 lg:px-8">
 				<!-- Your content -->
-				<slot />
+				{@render children?.()}
 			</div>
 		</main>
 	</div>
