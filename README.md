@@ -1,6 +1,6 @@
-# SvelteKit with Laravel Breeze (WIP)
+# SvelteKit with Laravel (WIP)
 
-A SvelteKit template project show how to use Laravel Breeze as a backend.
+A SvelteKit template project show how to use Laravel as a backend.
 
 > [!IMPORTANT]
 > 
@@ -15,13 +15,13 @@ This is a template project, you can click the `Use this template` to fork the pr
 Then, clone the project.
 
 ```bash
-git clone git@github.com:<YOUR_ACCOUNT>/sveltekit-with-laravel-breeze.git
+git clone git@github.com:<YOUR_ACCOUNT>/sveltekit-with-laravel.git
 ```
 
 Move into the project, and create a new `.env` file.
 
 ```bash
-cd sveltekit-with-laravel-breeze
+cd sveltekit-with-laravel
 cp .env.example .env
 ```
 
